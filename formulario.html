@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Formulario</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <style>
+    .container-form{
+      width: 500px;
+      margin: 0 auto;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container-form">
+    <form action="">
+      <div class="form-group">
+        <label for="name">Nombre</label>
+        <input type="text" class="form-control" name="name" id="name" data-type="string">
+      </div>
+      <div class="form-group">
+        <label for="lastname">Apellido</label>
+        <input type="text" class="form-control" name="lastname" id="lastname" data-type="string">
+      </div>
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="text" class="form-control" name="email" id="email" data-type="email">
+      </div>
+      <div class="form-group">
+        <label for="age">Edad</label>
+        <input type="text" class="form-control" name="age" id="age">
+      </div>
+      <div class="form-group">
+        <label for="bod">Fecha de Nacimiento</label>
+        <input type="text" class="form-control" name="bod" id="bod" data-type="date">
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-lg">Enviar</button>
+      </div>
+    </form>
+  </div>
+
+
+  <script>
+  var dataValidation = {
+    string: function(value){
+      if(value.length > 3)
+        return true;
+      else{
+        alert("Hey! El nombre debe tener mas de 3 caracteres! =(");
+        console.log("Hey! El nombre debe tener mas de 3 caracteres! =(");
+      }
+    },
+    email: function(value){
+      var exp = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      var validate = exp.test(value);
+      if(validate)
+        return true;
+      else {
+        console.log("Hey! Lo siento el email no es correcto! =(");
+      }
+    },
+
+    date: function(value){
+      var exp = /^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/;
+      var validate = exp.test(value);
+      if(validate)
+        return true;
+      else
+        console.log("Hey! La fecha debe estar en formato AAAA-MM-DD");
+    }
+  };
+
+
+
+  window.addEventListener('load', function(){
+
+    var name = document.getElementById("name");
+    var formControl = document.getElementsByClassName("form-control");
+
+    for(var i = 0; i < formControl.length; i++){
+      formControl[i].addEventListener('blur', function(){
+        validation(this);
+      }, false)
+    }
+
+  });
+
+  function validation(context){
+    var type = context.dataset.type;
+    if(typeof type != 'undefined'){
+      if(typeof dataValidation[type] == 'function'){
+        dataValidation[type].call(null, context.value);
+      }
+    }
+
+  }
+
+
+
+
+  </script>
+</body>
+</html>
