@@ -19,11 +19,11 @@
     <form action="">
       <div class="form-group">
         <label for="name">Nombre</label>
-        <input type="text" class="form-control" name="name" id="name" data-type="string">
+        <input type="text" class="form-control" name="name" id="name" data-type="string" data-length="3">
       </div>
       <div class="form-group">
         <label for="lastname">Apellido</label>
-        <input type="text" class="form-control" name="lastname" id="lastname" data-type="string">
+        <input type="text" class="form-control" name="lastname" id="lastname" data-type="string" data-length="4">
       </div>
       <div class="form-group">
         <label for="email">E-mail</label>
@@ -46,15 +46,21 @@
 
   <script>
   var dataValidation = {
-    string: function(value){
-      if(value.length > 3)
+    string: function(){
+      var value = this.value;
+      var length = this.dataset.length;
+      if(typeof length == 'undefined')
+        length = 1;
+      console.log(length);
+      if(value.length >= length)
         return true;
       else{
         alert("Hey! El nombre debe tener mas de 3 caracteres! =(");
         console.log("Hey! El nombre debe tener mas de 3 caracteres! =(");
       }
     },
-    email: function(value){
+    email: function(){
+      var value = this.value;
       var exp = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       var validate = exp.test(value);
       if(validate)
@@ -64,7 +70,8 @@
       }
     },
 
-    date: function(value){
+    date: function(){
+      var value = this.value;
       var exp = /^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/;
       var validate = exp.test(value);
       if(validate)
@@ -93,7 +100,7 @@
     var type = context.dataset.type;
     if(typeof type != 'undefined'){
       if(typeof dataValidation[type] == 'function'){
-        dataValidation[type].call(null, context.value);
+        dataValidation[type].call(context);
       }
     }
 
