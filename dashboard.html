@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Dashboard</title>
+  <script src="https://use.fontawesome.com/3286a4435b.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+  <style>
+    div.indicator{
+      width: 350px;
+      height: 150px;
+      background-color: #0088BE;
+      position: relative;
+      color: white;
+      font-family: 'Source Sans Pro';
+    }
+
+    .indicator-title h2{
+      padding-left: 10px;
+      padding-top: 5px;
+      font-size: 13px;
+    }
+
+    .indicator-icon{
+      position: absolute;
+      top: 20%;
+      left: 25%;
+      font-size: 60px;
+    }
+
+    .indicator-value{
+      position: absolute;
+      top: 20%;
+      left: 40%;
+      text-align: left;
+    }
+
+    .indicator-value span{
+      display: block;
+    }
+    .indicator-value span:first-child{
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    .indicator-value span:nth-child(2){
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .indicator-value span:nth-child(3){
+      font-size: 11px;
+    }
+
+    .indicator-footer{
+      position: absolute;
+      bottom: 5%;
+      right: 5%;
+    }
+
+
+
+  </style>
+</head>
+<body>
+  <div class="indicator">
+    <div class="indicator-title">
+      <h2>Pluviometria</h2>
+    </div>
+    <div class="indicator-icon">
+      <i class="fa fa-tint"></i>
+    </div>
+    <div class="indicator-value">
+      <span>7 Ml</span>
+      <span>Luzama</span>
+      <span>Miercoles 15 de Diciembre</span>
+    </div>
+    <div class="indicator-footer">
+      <span>Dias sin llover 0</span>
+    </div>
+  </div>
+</body>
+</html>

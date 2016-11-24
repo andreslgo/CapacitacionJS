@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ContextMenu</title>
+
+  <style>
+    .container{
+      width: 300px;
+      height: 600px;
+      display: inline-block;
+      border: 1px solid red;
+    }
+
+    .contextMenu{
+      width: 80px;
+    }
+
+    .contextMenu ul{
+      padding: 0;
+      margin: 0;
+    }
+
+    .contextMenu ul>li{
+      list-style: none;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="leftContainer" class="container">
+
+  </div>
+  <div id="rightContainer" class="container">
+
+  </div>
+
+  <script>
+  window.addEventListener('load', init);
+  function init(){
+    var leftContainer = document.getElementById('leftContainer');
+    var rightContainer = document.getElementById('rightContainer');
+    var menuLeft = ['Saludar', 'Despedirse'];
+    var menuRight = ['Imprimir', 'Salir'];
+
+
+    leftContainer.addEventListener('contextmenu', function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      showMenu(menuLeft);
+    });
+
+    rightContainer.addEventListener('contextmenu', function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      showMenu(menuRight);
+    });
+
+    function showMenu(menu){
+      var menuHTML = '<div class="contextMenu">';
+      menuHTML += '<ul>';
+      for(var i = 0; i < menu.length; i++){
+        menuHTML += '<li><a href="#" id="'+ menu[i]+'">'+menu[i]+'</a></li>';
+      }
+      menuHTML += '</ul>';
+      menuHTML += '</div>';
+      var div = document.createElement('div');
+      console.log(div);
+      div.innerHTML = menuHTML;
+    }
+
+
+  }
+
+
+  </script>
+</body>
+</html>

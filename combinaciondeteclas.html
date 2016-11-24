@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Combinacion de Teclas</title>
+</head>
+<body>
+  
+  <p>Presiona CTRL + B para cambiar a color negro</p>
+  <p>Presiona SHIFT + B para cambiar a color azul</p>
+  <p>Presiona ALT + B para cambiar a color amarillo</p>
+
+  <script>
+  window.addEventListener('load', init);
+
+  function init(){
+    document.addEventListener('keyup', function(e){
+      e.preventDefault();
+      if(e.ctrlKey && (e.key == 'b' || e.key == 'B')){
+        document.body.style.background = 'red';
+        return false;
+      }
+      if(e.shiftKey && (e.key == 'b' || e.key == 'B')){
+        document.body.style.background = 'blue';
+        return false;
+      }
+      if(e.altKey && (e.key == 'b' || e.key == 'B')){
+        document.body.style.background = 'yellow';
+        return false;
+      }
+    });
+  }
+  </script>
+</body>
+</html>

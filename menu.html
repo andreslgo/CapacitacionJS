@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Menu Contextual</title>
+  <style>
+    .menu{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 230px;
+      display: none;
+      border: 1px solid lightgray;
+    }
+
+    .menu ul{
+      padding: 0;
+      margin: 0;
+    }
+
+    .menu ul li{
+      padding: 5px;
+      list-style: none;
+    }
+
+    .menu ul li>a{
+      text-decoration: none;
+      color: black;
+      display: block;
+    }
+
+    .menu ul li:hover{
+      background-color: lightblue;
+    }
+
+
+  </style>
+</head>
+<body>
+
+  <div id="menu" class="menu">
+    <ul>
+      <li><a href="#" id="btnPrint">Imprimir</a></li>
+      <li><a href="#" id="btnHello">Saludar</a></li>
+      <li><a href="#" id="btnChangeColor">Cambiar Color</a></li>
+    </ul>
+  </div>
+
+  <script>
+  window.addEventListener('load', function(){
+
+    document.addEventListener('contextmenu', function(e){
+      e.preventDefault();
+      var menu = document.getElementById("menu");
+      menu.style.display = 'inline-block';
+      var windowWidth = window.innerWidth;
+      var windowHeight = window.innerHeight;
+      var menuHeight = menu.offsetHeight;
+      var menuWidth = menu.offsetWidth;
+      var positionTop = e.pageY;
+      var positionLeft = e.pageX;
+
+      if(positionTop + menuHeight > windowHeight){
+        positionTop = positionTop - menuHeight;
+      }
+
+      if(positionLeft + menuWidth > windowWidth){
+        positionLeft = positionLeft - menuWidth;
+      }
+
+      positionTop += 'px';
+      positionLeft += 'px';
+
+      menu.style.top = positionTop;
+      menu.style.left = positionLeft;
+    });
+
+  });
+
+  document.addEventListener("click", function(){
+    menu.style.display = 'none';
+  });
+
+  var btnPrint = document.getElementById("btnPrint");
+  var btnHello = document.getElementById("btnHello");
+  var btnChangeColor = document.getElementById("btnChangeColor");
+
+  btnChangeColor.addEventListener('click', function(e){
+    e.preventDefault();
+    if(document.querySelector('body').style.background == 'red')
+      document.querySelector('body').style.background = 'white'
+    else
+      document.querySelector('body').style.background = 'red';
+  });
+
+  btnPrint.addEventListener("click", function(e){
+    e.preventDefault();
+    window.print();
+  });
+
+  btnHello.addEventListener("click", function(e){
+    e.preventDefault();
+    alert("Hola Andres! =)");
+  })
+
+
+
+  </script>
+</body>
+</html>

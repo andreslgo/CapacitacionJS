@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Drag & Drop</title>
+  <style>
+    div.container{
+      display: inline-block;
+      width: 400px;
+      height: 400px;
+      border: 1px solid blue;
+    }
+    div#circle{
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background-color: red;
+    }
+
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="circle" draggable="true"></div>
+  </div>
+  <div id="container" class="container" ondrop="drop(this, event);"></div>
+  <div id="texto"></div>
+  <script>
+  window.addEventListener('load', init);
+
+  function init(){
+    var texto = document.getElementById('texto');
+    var circle = document.getElementById('circle');
+    var container = document.getElementById('container');
+
+    circle.addEventListener('dragstart', function(e){
+      texto.innerText += 'dragstart';
+    });
+    container.addEventListener('dragenter', function(e){
+
+    });
+  }
+
+  function drop(target, evento) {
+    document.getElementById('texto').innerText = 'Drop';
+  }
+  </script>
+</body>
+</html>

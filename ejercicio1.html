@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  .container {
+    margin: 100px 100px;
+    width: 350px;
+    height: 350px;
+    display: inline-block;
+    position:relative;
+    border: 1px solid blue;
+  }
+
+  .circle{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: red;
+    position: absolute;
+  }
+
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div id="circle" class="circle" draggable="true">
+
+    </div>
+  </div>
+
+  <div class="container">
+
+  </div>
+  <script>
+  window.addEventListener('load', init);
+
+  function init(){
+    var circle = document.getElementById('circle');
+    var container1 = document.getElementsByClassName('container')[0];
+    var container2 = document.getElementsByClassName('container')[1];
+    circle.addEventListener("dragstart", function(e){
+      console.log(e.offsetX);
+    });
+    circle.addEventListener("dragend", function(e){
+      console.log(e.offsetX);
+    });
+
+    document.addEventListener("drop", function( event ) {
+      // prevent default action (open as link for some elements)
+      event.preventDefault();
+      // move dragged elem to the selected drop target
+      console.log(event);
+
+    }, false);
+
+    container2.addEventListener("drop", function(e){
+      e.preventDefault();
+      console.log('Drop');
+      console.log(e);
+      console.log(e.target.className);
+    })
+
+  }
+
+  </script>
+</body>
+</html>

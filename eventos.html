@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Eventos JS</title>
+  <style>
+    #tabla{
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    #tabla tr{
+      border-bottom: 1px solid black;
+    }
+    #tabla td{
+      padding: 2px 5px;
+    }
+    #buscar{
+      font-size: 20px;
+      margin: 20px;
+    }
+    .container{
+      width: 600px;
+      margin: 0 auto;
+    }
+
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <input type="text" id="buscar" data-color="blue" data-bold="bold">
+    <table id="tabla">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>E-mail</th>
+          <th>Twitter</th>
+          <th>Edad</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Andres Luque</td>
+          <td>nelsonandreslg@gmail.com</td>
+          <td>@andreslgo</td>
+          <td>33</td>
+        </tr>
+        <tr>
+          <td>Fabian Sierra</td>
+          <td>fabians@biccofarms.com</td>
+          <td>@fesp</td>
+          <td>21</td>
+        </tr>
+        <tr>
+          <td>Patricia Bernal</td>
+          <td>patriciab@biccofarms.com</td>
+          <td>@patricia</td>
+          <td>23</td>
+        </tr>
+        <tr>
+          <td>Ambar Ballen</td>
+          <td>ambarb@biccofarms.com</td>
+          <td>@ambarb</td>
+          <td>19</td>
+        </tr>
+        <tr>
+          <td>Nestor Pinillos</td>
+          <td>nestorp@biccofarms.com</td>
+          <td>@nestorp</td>
+          <td>27</td>
+        </tr>
+        <tr>
+          <td>Yudy Chila</td>
+          <td>yudyc@biccofarms.com</td>
+          <td>@yudyc</td>
+          <td>23</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <script>
+  window.addEventListener('load', init);
+
+  function init(){
+    var tabla = document.getElementById('tabla');
+    var buscar = document.getElementById('buscar');
+    var color = buscar.dataset.color;
+    buscar.style.color = color;
+    buscar.addEventListener('keyup', function(e){
+      var valor = this.value.toUpperCase();
+      filtrarTabla(tabla, valor);
+    });
+  }
+
+  function filtrarTabla(tabla, valor){
+    var filas = tabla.querySelectorAll('tbody>tr');
+    for(var i = 0; i < filas.length; i++){
+      var celda = filas[i].querySelector('td:first-child');
+      var valorCelda = celda.innerText.toUpperCase();
+      if(valorCelda.indexOf(valor) == -1){
+        filas[i].style.display = 'none';
+      }else{
+        filas[i].style.display = 'table-row';
+      }
+    }
+  }
+  </script>
+</body>
+</html>
