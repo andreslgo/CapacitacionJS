@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+  <form action=""></form>
+
+    <select name="country" id="country"></select>
+
+  <script>
+
+  window.addEventListener('load', init);
+
+  function init(){
+    var url = "http://api.geonames.org/countryInfoJSON?username=andreslgo";
+    var req = new XMLHttpRequest();
+    req.onreadystatechange = function(){
+      jsonResponse = JSON.parse(req.responseText);
+      console.log(jsonResponse);
+      var options = '';
+      for(var i in jsonResponse.geonames){
+        var template = '<option value="';
+        template += jsonResponse.geonames[i].countryName + '">' + jsonResponse.geonames[i].countryName + '</option>';
+        options += template;
+      }
+      document.getElementById('country').innerHTML = options;
+    }
+    req.open('GET', url, true);
+    req.send(null);
+  }
+
+
+
+  </script>
+</body>
+</html>
