@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <title>Plugin JQuery</title>
+  <style>
+  .overlay{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.6);
+    z-index: 1000;
+  }
+
+  .modal {
+    width: 30%;
+    margin: 100px auto 0 auto;
+    border: 1px solid lightgray;
+    box-sizing: border-box;
+    border-radius: 10px;
+    z-index: 1200;
+    background-color: white;
+  }
+
+  .modal .close{
+    display: block;
+    text-align: right;
+    padding-right: 10px;
+    text-decoration: none;
+    color: lightgray;
+  }
+
+  .content{
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border: 1px solid lightgray;
+  }
+
+  .content::before{
+    content: '';
+    position: absolute;
+    bottom: -40px;
+    left: 0px;
+    width: 0px;
+    height: 0px;
+    border: 20px 40px 20px 0px;
+    /*background-color: blue;*/
+    border-color: transparent transparent transparent red;
+  }
+
+
+  </style>
+</head>
+<body>
+
+  <a href="#" id="modalRed" class="modalLink" data-source="#modal1">Modal</a>
+  <a href="#" id="modalBlue" class="modalLink" data-source="#modal2">Modal2</a>
+
+  <div class="content">
+
+  </div>
+
+
+  <div class="overlay" id="modal1">
+    <div class="modal">
+      <a href="#" class="close">X</a>
+      <h1>Titulo de la Modal</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum veritatis temporibus, dignissimos recusandae illum ut corrupti quisquam natus! Quidem dolores ut explicabo, doloremque ullam ipsum dicta provident fugit assumenda laborum.</p>
+    </div>
+  </div>
+
+  <div class="overlay" id="modal2">
+    <div class="modal">
+      <a href="#" class="close">X</a>
+      <h1>Titulo de la Modal 2</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum veritatis temporibus, dignissimos recusandae illum ut corrupti quisquam natus! Quidem dolores ut explicabo, doloremque ullam ipsum dicta provident fugit assumenda laborum.</p>
+      <a href="#" class="modalLink" data-source="#modal1">Modal</a>
+    </div>
+  </div>
+
+  <script>
+
+  $(function(){
+    $("#modalRed").modal({
+      colorTitle: 'red'
+    });
+    $("#modalBlue").modal();
+  });
+
+
+
+  $.fn.modal = function(options){
+
+    var defaults = {
+      colorTitle: 'yellow'
+    }
+
+    options = $.extend(defaults, options);
+
+
+    this.on('click', function(){
+      var modal = $(this).data('source');
+      $(modal).find('h1').css('color', options.colorTitle);
+      $(modal).fadeIn('slow');
+    });
+
+    $(".modal .close").on('click', function(){
+      $(this).parents('.overlay').fadeOut('slow');
+    });
+
+  }
+
+
+  </script>
+</body>
+</html>

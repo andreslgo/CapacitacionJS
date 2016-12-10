@@ -19,17 +19,40 @@
     }
 
     .contextMenu ul{
-      padding: 0;
+      padding: 10px 0;
       margin: 0;
+      width: 100%;
     }
 
     .contextMenu ul>li{
       list-style: none;
+      display: block;
+    }
+
+    .contextMenu ul>li>a{
+      padding-left: 20px;
+      display: block;
+      text-decoration: none;
+    }
+
+    .contextMenu ul>li>a:hover{
+      background-color: lightgray;
+    }
+
+    #divMenu {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100px;
+      width: 100px;
+      border: 1px solid lightgray;
     }
 
   </style>
 </head>
 <body>
+  <div id="divMenu"></div>
   <div id="leftContainer" class="container">
 
   </div>
@@ -42,6 +65,7 @@
   function init(){
     var leftContainer = document.getElementById('leftContainer');
     var rightContainer = document.getElementById('rightContainer');
+    var divMenu = document.getElementById('divMenu');
     var menuLeft = ['Saludar', 'Despedirse'];
     var menuRight = ['Imprimir', 'Salir'];
 
@@ -49,16 +73,24 @@
     leftContainer.addEventListener('contextmenu', function(e){
       e.preventDefault();
       e.stopPropagation();
-      showMenu(menuLeft);
+      showMenu(menuLeft, e);
     });
 
     rightContainer.addEventListener('contextmenu', function(e){
       e.preventDefault();
       e.stopPropagation();
-      showMenu(menuRight);
+      showMenu(menuRight, e);
     });
 
-    function showMenu(menu){
+    document.addEventListener('click', function(){
+      divMenu.style.display = 'none';
+    })
+
+    function showMenu(menu, e){
+      var pos = {
+        posX: e.pageX,
+        posY: e.pageY
+      }
       var menuHTML = '<div class="contextMenu">';
       menuHTML += '<ul>';
       for(var i = 0; i < menu.length; i++){
@@ -66,9 +98,10 @@
       }
       menuHTML += '</ul>';
       menuHTML += '</div>';
-      var div = document.createElement('div');
-      console.log(div);
-      div.innerHTML = menuHTML;
+      divMenu.innerHTML = menuHTML;
+      divMenu.style.top = pos.posY + 'px';
+      divMenu.style.left = pos.posX + 'px';
+      divMenu.style.display = 'block';
     }
 
 
