@@ -1,0 +1,48 @@
+body, html{
+  margin:0;
+  padding: 0;
+}
+body>div{
+  font-size: 0;
+}
+#map, #info{
+  vertical-align: top;
+  font-size: 15px;
+  display: inline-block;
+  width: 49%;
+  height: 100%;
+  border: 1px solid lightgray;
+  box-sizing: border-box;
+  margin: 0.5%;
+}
+
+#info table{
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#info table tr{
+  border-bottom: 1px solid lightgray;
+}
+
+#info table tbody tr:hover{
+  background-color: lightgray;
+}
+
+#info table td, #info table th{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#info table td img{
+  vertical-align: middle;
+}
+
+
+.right{
+  text-align: right;
+}
+
+.left{
+  text-align: left;
+}

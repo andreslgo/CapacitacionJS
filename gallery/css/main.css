@@ -1,0 +1,113 @@
+body, html{
+  padding: 0;
+  margin: 0;
+  font-size: 10px;
+}
+
+body > div:first-child{
+  width: 80%;
+  margin: 50px auto;
+  text-align: center;
+}
+
+div.img-container{
+  position: relative;
+  display: inline-block;
+  border: 1px solid lightgray;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+div.img-container span{
+  position: absolute;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2px;
+  color: white;
+  background-color: rgba(0,0,0,0.4);
+  height: 0;
+  opacity: 0;
+  box-sizing: border-box;
+  transition: all ease 1s;
+}
+
+div.img-container:hover{
+  cursor: pointer;
+}
+
+div.img-container:hover span{
+  height: 30px;
+  opacity: 1;
+  transition: all ease 1s;
+}
+
+div.overlay{
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0,0,0, 0.7);
+  z-index: 100;
+}
+
+div.modal{
+  display:none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+}
+
+div.modal .modal-content{
+  margin: 10px auto;
+  width: 60%;
+  text-align: center;
+}
+
+div.modal .modal-content .gallery{
+  position: relative;
+}
+
+div.modal .modal-content .gallery img{
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+}
+
+div.modal .modal-close{
+  font-size: 4rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  position: absolute;
+  right: 2%;
+  top: 1%;
+}
+
+div.modal .prev, div.modal .next{
+  position: absolute;
+  font-size: 4rem;
+  top: 50%;
+  margin-top: -2rem;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+div.modal .prev{
+  left: 1%;
+}
+
+div.modal .next{
+  right: 1%;
+}
